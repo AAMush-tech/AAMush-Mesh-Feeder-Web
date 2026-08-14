@@ -621,16 +621,13 @@ Restricted project source and private development material.
 
 
 <button class="briefcaseItem"
- onclick="openInfo(
- 'Developer Profile',
- 'AAMush Mesh-01 Feeder project developer profile and system background.'
- )">
+onclick="openDeveloperProfile()">
 
 <div class="itemIcon">👤</div>
 
 <div class="itemText">
 <strong>Developer Profile</strong>
-<span>Developer and project background.</span>
+<span>Dr. James K. Mushi — developer, scholar and education-access advocate.</span>
 </div>
 
 </button>
@@ -942,7 +939,74 @@ function showPrivateLocked(){
 
 /* INFORMATION */
 
-function openInfo(title,text){
+/* DEVELOPER PROFILE */
+
+function openDeveloperProfile(){
+
+document.getElementById("infoTitle").textContent="Developer Profile";
+
+document.getElementById("infoText").innerHTML=`
+
+<div style="text-align:center;margin-bottom:18px;">
+
+<img src="Screenshot_2026-08-14-17-27-24-608~2.jpeg"
+style="width:180px;height:220px;object-fit:cover;border-radius:14px;border:3px solid #ffffff;box-shadow:0 6px 20px rgba(0,0,0,.45);">
+
+</div>
+
+<h2 style="text-align:center;margin-bottom:8px;">
+Dr. James K. Mushi
+</h2>
+
+<p style="text-align:center;font-size:16px;">
+<strong>Developer • Scholar • Educator • Education-Access Advocate</strong>
+</p>
+
+<p>
+Dr. James K. Mushi is an interdisciplinary scholar, educator, technology developer and education-access advocate whose work brings together education, technology, linguistics, history, theology and community development.
+</p>
+
+<p>
+He is the developer and visionary behind the <strong>AAMush Mesh-01 Feeder</strong> project, combining practical innovation with a broader commitment to knowledge, accessibility and human development.
+</p>
+
+<h3>Academic & Scholarly Profile</h3>
+
+<p>
+Dr. Mushi holds a <strong>PhD in Theology Studies</strong> and a <strong>Master's degree in Computer Science</strong>. He is also pursuing a <strong>PhD in Linguistics & History</strong>, reflecting his commitment to interdisciplinary scholarship and the relationship between language, history, knowledge and society.
+</p>
+
+<h3>Education Leadership</h3>
+
+<p>
+He serves as <strong>Director of the Education Access Advisory Programme</strong>, an initiative dedicated to expanding educational opportunity, guidance and access to learning.
+</p>
+
+<p>
+He is also the <strong>Founder of Abigail Eduacces Shule Foundation</strong>, an education-focused foundation established around the conviction that education should be accessible, empowering and capable of transforming individual lives and communities.
+</p>
+
+<h3>Vision</h3>
+
+<p>
+His work is guided by a simple but profound principle: <strong>knowledge should not merely be possessed; it should be used to create opportunity, solve problems and improve human life.</strong>
+</p>
+
+<p>
+Through scholarship, education advocacy and technological innovation, Dr. Mushi seeks to build bridges between knowledge and practical solutions — particularly where education, technology and social advancement intersect.
+</p>
+
+<p style="margin-top:18px;font-style:italic;text-align:center;">
+“Education opens the door to possibility; knowledge gives people the power to walk through it.”
+</p>
+
+`;
+
+infoScreen.classList.add("active");
+
+document.body.style.overflow="hidden";
+
+ }function openInfo(title,text){
 
  document.getElementById("infoTitle").textContent=title;
 

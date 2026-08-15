@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AAMush Mesh-01 Feeder</title>
 
 <style>
@@ -14,461 +14,319 @@ html,body{
  min-height:100%;
  font-family:Arial,Helvetica,sans-serif;
  background:#06100b;
- color:#fff;
+ color:#fff
 }
 
 body{overflow-x:hidden}
 
 .page{
  min-height:100vh;
- padding:30px 18px 150px;
+ padding:25px 14px 130px;
  background:
  radial-gradient(circle at 50% 0%,rgba(48,135,91,.25),transparent 40%),
- linear-gradient(180deg,#0a1911,#06100b 70%,#030806);
+ linear-gradient(180deg,#0a1911,#06100b 70%,#030806)
 }
 
 .hero{
- max-width:900px;
+ max-width:1000px;
  margin:auto;
- text-align:center;
+ text-align:center
 }
 
 .hero h1{
  margin:15px 0 10px;
- font-size:clamp(28px,8vw,55px);
- letter-spacing:1px;
+ font-size:clamp(28px,8vw,55px)
 }
 
 .hero p{
- max-width:720px;
+ max-width:800px;
  margin:12px auto;
- line-height:1.7;
- color:#b8c9bf;
- font-size:16px;
+ line-height:1.6;
+ color:#b8c9bf
 }
 
-.live{
- max-width:700px;
+.dashboard{
+ max-width:900px;
  margin:30px auto;
+ background:#fff;
+ color:#222;
+ border-radius:20px;
+ overflow:hidden;
+ box-shadow:0 20px 60px #0008
+}
+
+.dashhead{
  padding:20px;
- border:1px solid #315541;
- border-radius:18px;
- background:#0d1913;
- box-shadow:0 10px 35px rgba(0,0,0,.35);
-}
-
-.live h2{
- margin:0 0 15px;
-}
-
-.liveRow{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:12px 0;
- border-bottom:1px solid #20382b;
-}
-
-.liveRow:last-child{border-bottom:0}
-
-.online{
- color:#55e38a;
+ border-bottom:1px solid #ddd;
  font-weight:bold;
+ font-size:20px
 }
 
-.dot{
- display:inline-block;
- width:10px;
- height:10px;
- margin-right:7px;
+.status{
+ padding:10px 20px;
+ border-bottom:1px solid #ddd;
+ color:#777;
+ text-align:center
+}
+
+.metrics{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:16px;
+ padding:18px
+}
+
+.metric{
+ border:1px solid #ddd;
+ border-radius:15px;
+ padding:20px
+}
+
+.metric small{
+ color:#777;
+ font-size:14px
+}
+
+.metric strong{
+ display:block;
+ font-size:35px;
+ margin-top:10px
+}
+
+.green{
+ color:#198754
+}
+
+.route{
+ display:flex;
+ justify-content:space-around;
+ align-items:center;
+ padding:20px;
+ margin:0 18px 18px;
+ border:1px solid #ddd;
+ border-radius:15px
+}
+
+.node{
+ text-align:center
+}
+
+.node b{
+ display:block;
+ width:45px;
+ height:45px;
+ line-height:45px;
+ border:1px solid #ddd;
  border-radius:50%;
- background:#55e38a;
- box-shadow:0 0 12px #55e38a;
- animation:pulse 1.5s infinite;
+ margin:auto
 }
 
-@keyframes pulse{
- 0%,100%{opacity:1}
- 50%{opacity:.35}
+.feed{
+ margin:18px;
+ border:1px solid #ddd;
+ border-radius:15px;
+ overflow:hidden
 }
 
-/* FLOATING AAMUSH ARTWORK */
+.feed h3{
+ margin:0;
+ padding:16px;
+ border-bottom:1px solid #ddd
+}
+
+.event{
+ padding:12px 16px;
+ border-bottom:1px solid #eee;
+ font-family:monospace
+}
+
+.tag{
+ display:inline-block;
+ padding:3px 7px;
+ border-radius:5px;
+ background:#dff5e7;
+ color:#198754;
+ font-weight:bold;
+ margin-right:8px
+}
+
+/* FLOATING AAMUSH BUTTON */
 
 #floatingLogo{
  position:fixed;
  right:16px;
  bottom:16px;
- width:110px;
- height:110px;
- padding:0;
- border:2px solid rgba(255,255,255,.9);
+ width:100px;
+ height:100px;
  border-radius:50%;
- overflow:hidden;
- background:#06100b;
+ border:3px solid white;
+ background:linear-gradient(145deg,#1d6b42,#07120c);
+ color:white;
  z-index:9999;
  cursor:pointer;
- box-shadow:0 8px 30px rgba(0,0,0,.7);
- animation:aamushFloat 2.7s ease-in-out infinite;
+ box-shadow:0 8px 35px #000;
+ animation:float 2.7s ease-in-out infinite;
+ font-weight:bold;
+ font-size:15px
 }
 
-#floatingLogo img{
- width:100%;
- height:100%;
- display:block;
- object-fit:cover;
- border-radius:50%;
-}
-
-@keyframes aamushFloat{
- 0%,100%{transform:translateY(0) scale(1)}
- 50%{transform:translateY(-9px) scale(1.03)}
-}
-
-#floatingLogo:active{
- transform:scale(.92);
- animation:none;
+@keyframes float{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-9px)}
 }
 
 /* BRIEFCASE */
 
-#briefcaseScreen{
+#briefcase{
  position:fixed;
  inset:0;
  z-index:10000;
  display:none;
  overflow-y:auto;
  padding:15px;
- background:rgba(0,0,0,.84);
+ background:#000d
 }
 
-#briefcaseScreen.active{display:block}
+#briefcase.active{
+ display:block
+}
 
-.briefcase{
- width:100%;
+.case{
  max-width:900px;
- margin:20px auto 40px;
- border-radius:22px;
- overflow:hidden;
+ margin:20px auto;
  background:#0d1913;
  border:1px solid #355442;
- box-shadow:0 25px 70px rgba(0,0,0,.7);
+ border-radius:22px;
+ overflow:hidden;
+ box-shadow:0 25px 70px #000
 }
 
-.briefcaseHeader{
+.casehead{
+ padding:22px 60px 22px 20px;
  position:relative;
- padding:24px 62px 22px 20px;
- background:linear-gradient(135deg,#15291e,#09120d);
- border-bottom:1px solid #2f493a;
+ background:linear-gradient(135deg,#15291e,#09120d)
 }
 
-.briefcaseHeader h2{
- margin:0 0 7px;
- font-size:27px;
+.casehead h2{
+ margin:0 0 7px
 }
 
-.briefcaseHeader p{
- margin:0;
- color:#aebfb5;
- line-height:1.5;
+.casehead p{
+ color:#aebfb5
 }
 
-.closeButton{
+.close{
  position:absolute;
- top:13px;
- right:13px;
+ top:12px;
+ right:12px;
  width:44px;
  height:44px;
  border-radius:50%;
- border:1px solid #557060;
  background:#08100c;
  color:#fff;
- font-size:27px;
- cursor:pointer;
+ border:1px solid #557060;
+ font-size:25px
 }
 
-/* LEVEL 1 */
-
-.folderLevel{
+.folders{
  padding:16px;
  display:grid;
- gap:14px;
+ gap:14px
 }
 
-.folderCard{
- width:100%;
- display:flex;
- align-items:center;
- gap:16px;
+.folder{
  padding:20px;
  border-radius:16px;
  border:1px solid #2c4939;
  background:#111f18;
  color:#fff;
  text-align:left;
- cursor:pointer;
+ cursor:pointer
 }
 
-.folderCard:active{
- transform:scale(.985);
-}
-
-.folderIcon{
- flex-shrink:0;
- width:55px;
- height:55px;
- display:flex;
- align-items:center;
- justify-content:center;
- border-radius:14px;
- background:#193024;
- font-size:28px;
-}
-
-.folderText strong{
+.folder strong{
  display:block;
- margin-bottom:5px;
  font-size:18px;
+ margin-bottom:6px
 }
 
-.folderText span{
+.folder span{
  color:#a9bbb1;
- font-size:13px;
- line-height:1.45;
+ font-size:13px
 }
 
-.folderArrow{
- margin-left:auto;
- font-size:25px;
- color:#777;
+.private{
+ opacity:.55
 }
 
-.folderLock{
- margin-left:auto;
- font-size:9px;
- font-weight:bold;
- letter-spacing:.7px;
- color:#777;
- background:#e5e7eb;
- padding:5px 7px;
- border-radius:7px;
-}
-
-/* LEVEL 2 */
-
-.briefcaseLevel{
- padding:16px;
+.publicItems{
  display:none;
- flex-direction:column;
- gap:12px;
+ padding:16px
 }
 
-.levelBack{
- align-self:flex-start;
- padding:10px 14px;
- border-radius:10px;
- border:1px solid #506a5b;
- background:#15251c;
- color:#fff;
- cursor:pointer;
-}
-
-.levelTitle{
- display:flex;
- align-items:center;
- gap:12px;
- padding:12px 5px;
-}
-
-.levelTitle span{
- font-size:27px;
-}
-
-.levelTitle strong{
+.item{
  display:block;
- font-size:20px;
-}
-
-.levelTitle small{
- color:#9fb2a7;
-}
-
-.briefcaseItem{
  width:100%;
- display:flex;
- align-items:center;
- gap:14px;
- padding:16px;
+ margin-bottom:12px;
+ padding:17px;
  border-radius:15px;
  border:1px solid #2c4939;
  background:#111f18;
  color:#fff;
  text-align:left;
- cursor:pointer;
+ cursor:pointer
 }
 
-.briefcaseItem:active{
- transform:scale(.985);
-}
-
-.itemIcon{
- flex-shrink:0;
- width:48px;
- height:48px;
- display:flex;
- align-items:center;
- justify-content:center;
- border-radius:12px;
- background:#193024;
- font-size:23px;
-}
-
-.itemText strong{
+.item strong{
  display:block;
- margin-bottom:4px;
- font-size:16px;
+ margin-bottom:5px
 }
 
-.itemText span{
- display:block;
+.item span{
  color:#a9bbb1;
- font-size:13px;
- line-height:1.45;
+ font-size:13px
 }
 
-.manualNotice{
- margin:0 16px 16px;
- padding:14px;
- border-radius:12px;
- background:#15251c;
- color:#b8c9bf;
- font-size:13px;
- line-height:1.5;
-}
-
-/* PRIVATE LOCK */
-
-.privateLocked{
- padding:45px 20px;
- text-align:center;
- border:1px solid #333;
- border-radius:18px;
- background:#101010;
-}
-
-.bigLock{
- font-size:55px;
- margin-bottom:10px;
-}
-
-.privateLocked h3{
- margin:5px 0 8px;
- font-size:25px;
- color:#ddd;
-}
-
-.privateLocked p{
- color:#aaa;
-}
-
-.privateLocked strong{
- display:block;
- color:#ff7777;
- margin-top:15px;
-}
-
-.privateLocked span{
- display:block;
- margin-top:10px;
- color:#777;
- line-height:1.5;
-}
-
-/* INFORMATION SCREENS */
-
-.fullScreen{
+.info{
+ display:none;
  position:fixed;
  inset:0;
  z-index:11000;
- display:none;
- flex-direction:column;
  background:#07110d;
-}
-
-.fullScreen.active{
- display:flex;
-}
-
-.topBar{
- flex-shrink:0;
- min-height:60px;
- display:flex;
- align-items:center;
- gap:10px;
- padding:8px 12px;
- background:#0d1813;
- border-bottom:1px solid #314c3d;
-}
-
-.topBar button{
- padding:10px 14px;
- border-radius:10px;
- border:1px solid #506a5b;
- background:#15251c;
- color:#fff;
- font-size:14px;
- cursor:pointer;
-}
-
-.topBarTitle{
- flex:1;
- min-width:0;
- overflow:hidden;
- white-space:nowrap;
- text-overflow:ellipsis;
- font-weight:bold;
-}
-
-.infoContent{
- flex:1;
- overflow-y:auto;
- padding:25px;
- line-height:1.7;
- color:#c6d4cd;
+ overflow:auto;
+ padding:20px
 }
 
 .infoBox{
  max-width:850px;
- margin:auto;
- padding:22px;
+ margin:40px auto;
+ padding:25px;
  border-radius:15px;
  background:#101e17;
  border:1px solid #2d4939;
+ line-height:1.7
 }
 
-.infoBox h2{
- color:#fff;
+.back{
+ padding:10px 14px;
+ border-radius:10px;
+ border:1px solid #506a5b;
+ background:#15251c;
+ color:white
 }
 
-/* MANUAL */
+@media(max-width:700px){
+ .metrics{
+  grid-template-columns:1fr
+ }
 
-#manualScreen{
- position:fixed;
- inset:0;
- z-index:12000;
- display:none;
- flex-direction:column;
- background:#07110d;
-}
+ .route{
+  gap:8px
+ }
 
-#manualScreen.active{
- display:flex;
-}
-
-#manualFrame{
- width:100%;
- height:100%;
- border:none;
- background:#fff;
+ .node{
+  font-size:11px
+ }
 }
 </style>
 </head>
@@ -479,46 +337,125 @@ body{overflow-x:hidden}
 
 <section class="hero">
 
-<h1>AAMush Mesh-01 Feeder</h1>
+<h1>AAMush Mesh-01 Feeder Device</h1>
 
 <p>
-Autonomous physical-edge feeder device for the AAMush East African
-autonomous commodity-logistics mesh.
+Live telemetry from the East African trade-logistics mesh.
+Invented by Aloyce &amp; Mushi.
 </p>
 
-<p>
-Tap the floating AAMush artwork to open the Developer Briefcase.
-</p>
+<div class="dashboard">
 
-<div class="live">
-
-<h2>🔴 AAMush 01-Mesh Feeder — LIVE</h2>
-
-<div class="liveRow">
-<span>Device Status</span>
-<span class="online">
-<span class="dot"></span>ONLINE
+<div class="dashhead">
+🟢 AAMush Mesh-01
+<span style="float:right;font-size:14px;color:#777">
+LIVE
 </span>
 </div>
 
-<div class="liveRow">
-<span>Mesh Registration</span>
-<span class="online">MESH-01 REGISTERED</span>
+<div class="status">
+INVENTED BY ALOYCE &amp; MUSHI
 </div>
 
-<div class="liveRow">
-<span>GNSS</span>
-<span class="online">LOCK ACQUIRED</span>
+<div class="metrics">
+
+<div class="metric">
+<small>◯ CONVOYS LIVE</small>
+<strong>20</strong>
+<span class="green">↗ +2 forming</span>
 </div>
 
-<div class="liveRow">
-<span>Telemetry</span>
-<span class="online">SYNCHRONIZED</span>
+<div class="metric">
+<small>▣ TRUCKS STAKED</small>
+<strong>196</strong>
+<span class="green">↗ +4 this hour</span>
 </div>
 
-<div class="liveRow">
-<span>System</span>
-<span class="online">READY</span>
+<div class="metric">
+<small>＋ VALUE FLOWING</small>
+<strong>$2.51M</strong>
+<span class="green">↗ +$18.2K/min</span>
+</div>
+
+<div class="metric">
+<small>♢ SETTLEMENT RATE</small>
+<strong>99.7%</strong>
+<span class="green">↗ 0 fails today</span>
+</div>
+
+</div>
+
+<div class="route">
+
+<div class="node">
+<b>M</b>
+MBA
+</div>
+
+<div>━━</div>
+
+<div class="node">
+<b>N</b>
+NBO
+</div>
+
+<div>━━</div>
+
+<div class="node">
+<b>K</b>
+KLA
+</div>
+
+<div>━━</div>
+
+<div class="node">
+<b>R</b>
+KIG
+</div>
+
+<div>━━</div>
+
+<div class="node">
+<b>G</b>
+GOM
+</div>
+
+</div>
+
+<div class="feed">
+
+<h3>⚡ LIVE MESH FEED</h3>
+
+<div class="event">
+23:26:26
+<span class="tag">REGEN</span>
+Identity DID-ug-4412 verified via ZK-proof
+</div>
+
+<div class="event">
+23:26:24
+<span class="tag">REGEN</span>
+Title #8921 minted — moisture 12.3%, GPS locked
+</div>
+
+<div class="event">
+23:26:21
+<span class="tag">REGEN</span>
+Identity DID-ug-4412 verified via ZK-proof
+</div>
+
+<div class="event">
+23:26:16
+<span class="tag">AURA</span>
+Convoy #C-2839 forming — 2/5 trucks matched
+</div>
+
+<div class="event">
+23:26:11
+<span class="tag">GHOST</span>
+Satellite NDVI update — Iganga field index 0.82
+</div>
+
 </div>
 
 </div>
@@ -528,564 +465,173 @@ Tap the floating AAMush artwork to open the Developer Briefcase.
 </main>
 
 
-<!-- ACTUAL AAMUSH ARTWORK EMBEDDED HERE -->
+<!-- FLOATING BRIEFCASE BUTTON -->
 
-<button id="floatingLogo"
- aria-label="Open AAMush Developer Briefcase"
- title="Open AAMush Developer Briefcase">
-
-<img
-alt="AAMush Mesh Feeder Developer Briefcase"
-src="file_00000000cc5c81f68e88e025d3ff5701.png"
+<button id="floatingLogo">
+AAMush<br>▣
 </button>
 
 
 <!-- BRIEFCASE -->
 
-<div id="briefcaseScreen">
+<div id="briefcase">
 
-<section class="briefcase">
+<div class="case">
 
-<header class="briefcaseHeader">
+<div class="casehead">
 
-<button class="closeButton" id="closeBriefcase">×</button>
+<button class="close" onclick="closeBriefcase()">×</button>
 
 <h2>AAMush Project Briefcase</h2>
 
 <p>
-Developer profile, public project documentation,
-intellectual-property notice, development history,
-operating manual and system records.
+Select the access level. Public material is available to visitors;
+private material remains restricted.
 </p>
 
-</header>
+</div>
 
+<div id="folders" class="folders">
 
-<!-- LEVEL 1 -->
-
-<div id="briefcaseLevel1" class="folderLevel">
-
-<button class="folderCard"
- onclick="openBriefcaseLevel('public')">
-
-<div class="folderIcon">🌐</div>
-
-<div class="folderText">
-<strong>PUBLIC</strong>
+<button class="folder" onclick="openPublic()">
+<strong>🌐 PUBLIC</strong>
 <span>
-Information approved for public presentation.
+Public AAMush information, project overview, developer information,
+operating documentation and demonstration material.
 </span>
-</div>
-
-<div class="folderArrow">›</div>
-
 </button>
 
-
-<button class="folderCard"
- onclick="showPrivateLocked()">
-
-<div class="folderIcon">🔒</div>
-
-<div class="folderText">
-<strong>PRIVATE</strong>
+<button class="folder private">
+<strong>🔒 PRIVATE</strong>
 <span>
-Restricted project source and private development material.
+Restricted developer/project material. No public access.
 </span>
-</div>
-
-<div class="folderLock">LOCKED</div>
-
 </button>
 
 </div>
 
 
-<!-- LEVEL 2 PUBLIC -->
+<div id="publicItems" class="publicItems">
 
-<div id="publicLevel" class="briefcaseLevel">
-
-<button class="levelBack"
- onclick="showBriefcaseLevel1()">
-← Back
+<button class="item" onclick="info('Developer Profile',
+'Developer and project background for the AAMush Mesh-01 Feeder Device.')">
+<strong>👤 Developer Profile</strong>
+<span>Developer and project background.</span>
 </button>
 
-<div class="levelTitle">
-<span>🌐</span>
-<div>
-<strong>PUBLIC</strong>
-<small>Public AAMush project information</small>
-</div>
-</div>
-
-
-<button class="briefcaseItem"
-onclick="openDeveloperProfile()">
-
-<div class="itemIcon">👤</div>
-
-<div class="itemText">
-<strong>Developer Profile</strong>
-<span>Dr. James K. Mushi — developer, scholar and education-access advocate.</span>
-</div>
-
+<button class="item" onclick="info('Project Documentation',
+'Core public AAMush project and system documentation.')">
+<strong>📁 Project Documentation</strong>
+<span>Core public project documentation.</span>
 </button>
 
-
-<button class="briefcaseItem"
- onclick="openInfo(
- 'Project Documentation',
- 'AAMush Mesh-01 project documentation and system description.'
- )">
-
-<div class="itemIcon">📁</div>
-
-<div class="itemText">
-<strong>Project Documentation</strong>
-<span>Core project and system documentation.</span>
-</div>
-
-</button>
-
-
-<button class="briefcaseItem"
- onclick="openInfo(
- 'Intellectual-Property Notice',
- 'AAMush Mesh-01 documentation and associated materials constitute project development and intellectual-property material. Treat the material as confidential unless disclosure is authorized.'
- )">
-
-<div class="itemIcon">©</div>
-
-<div class="itemText">
-<strong>Intellectual-Property Notice</strong>
+<button class="item" onclick="info('Intellectual-Property Notice',
+'AAMush Mesh-01 documentation and associated materials constitute project development and intellectual-property material. Treat the material as confidential unless disclosure is authorized.')">
+<strong>© Intellectual-Property Notice</strong>
 <span>IP, confidentiality and controlled-use notice.</span>
-</div>
-
 </button>
 
-
-<button class="briefcaseItem"
- onclick="openInfo(
- 'Development History',
- 'Development history, milestones and evidence for the AAMush Mesh-01 project.'
- )">
-
-<div class="itemIcon">🕒</div>
-
-<div class="itemText">
-<strong>Development History</strong>
+<button class="item" onclick="info('Development History',
+'Public development history, milestones and evidence for the AAMush Mesh-01 project.')">
+<strong>🕒 Development History</strong>
 <span>Project evolution and development record.</span>
-</div>
-
 </button>
 
-
-<button class="briefcaseItem"
- onclick="openManual()">
-
-<div class="itemIcon">📖</div>
-
-<div class="itemText">
-<strong>Operating Manual</strong>
-<span>
-AAMush Mesh-01 Feeder Device Master Operating,
-Development &amp; System Functional Manual.
-</span>
-</div>
-
+<button class="item" onclick="info('Operating Manual',
+'The AAMush Mesh-01 Feeder Device Master Operating, Development & System Functional Manual.')">
+<strong>📖 Operating Manual</strong>
+<span>Master operating and development manual.</span>
 </button>
 
-
-<button class="briefcaseItem"
- onclick="openInfo(
- 'System Architecture',
- 'Mesh-01 physical-edge architecture, device interfaces and relationship to the wider AAMush mesh.'
- )">
-
-<div class="itemIcon">⚙</div>
-
-<div class="itemText">
-<strong>System Architecture</strong>
-<span>Architecture and system-level documentation.</span>
-</div>
-
+<button class="item" onclick="info('System Architecture',
+'Public-level description of Mesh-01 physical-edge architecture and its relationship to the wider AAMush mesh.')">
+<strong>⚙ System Architecture</strong>
+<span>Public architecture and system-level documentation.</span>
 </button>
 
-
-<button class="briefcaseItem"
- onclick="openInfo(
- 'Testing & Validation',
- 'Testing, validation, commissioning and evidence records for the Mesh-01 device.'
- )">
-
-<div class="itemIcon">✓</div>
-
-<div class="itemText">
-<strong>Testing &amp; Validation</strong>
-<span>Validation and commissioning records.</span>
-</div>
-
+<button class="item" onclick="info('Testing & Validation',
+'Public testing, validation, commissioning and evidence information for the Mesh-01 device.')">
+<strong>✓ Testing &amp; Validation</strong>
+<span>Public validation information.</span>
 </button>
-<button class="briefcaseItem"
-onclick="openInfo(
-'AAMush Software',
-'AAMush Mesh-01 software layer: user interface, device-control architecture, communication interface, operating logic, diagnostics, status monitoring and software-to-hardware integration. Public documentation describes the software architecture without exposing private credentials, keys or restricted implementation material.'
-)">
 
-<div class="itemIcon">💻</div>
-
-<div class="itemText">
-<strong>AAMush Software</strong>
-<span>Software architecture, interface, device communication &amp; control layer.</span>
-</div>
-
-</button><button class="briefcaseItem"
-onclick="openInfo(
-'AAMush Mesh-01 Device Access',
-'Authorized access interface for the AAMush Mesh-01 Feeder Device. This section is the entry point for device status, operating controls, diagnostics and software-to-device communication. Public pages do not contain private credentials or restricted control keys.'
-)">
-
-<div class="itemIcon">⚙️</div>
-
-<div class="itemText">
-<strong>AAMush Mesh-01 Device Access</strong>
-<span>Device status, operating controls, diagnostics &amp; authorized access.</span>
-</div>
-
- </button>
-
-<button class="briefcaseItem"
- onclick="openInfo(
- 'Future Development',
- 'Future features, extensibility and planned development for AAMush Mesh-01.'
- )">
-
-<div class="itemIcon">🚀</div>
-
-<div class="itemText">
-<strong>Future Development</strong>
+<button class="item" onclick="info('Future Development',
+'Future features, extensibility and planned development for AAMush Mesh-01.')">
+<strong>🚀 Future Development</strong>
 <span>Roadmap and future extensibility.</span>
-</div>
-
 </button>
 
-
-<button class="briefcaseItem"
- onclick="openInfo(
- 'Investor / Demonstration Information',
- 'Demonstration-ready AAMush project information and presentation material.'
- )">
-
-<div class="itemIcon">◆</div>
-
-<div class="itemText">
-<strong>Investor / Demonstration Information</strong>
+<button class="item" onclick="info('Investor / Demonstration Information',
+'Demonstration-ready AAMush project information and presentation material.')">
+<strong>◆ Investor / Demonstration Information</strong>
 <span>Demonstration and presentation material.</span>
-</div>
-
 </button>
 
-
-<div class="manualNotice">
-<strong>PUBLIC FOLDER:</strong>
-This folder contains information intended for public presentation.
-Private implementation material is not opened through this public interface.
-</div>
+<button class="back" onclick="backFolders()">← Back</button>
 
 </div>
-
-
-<!-- LEVEL 2 PRIVATE -->
-
-<div id="privateLevel" class="briefcaseLevel">
-
-<button class="levelBack"
- onclick="showBriefcaseLevel1()">
-← Back
-</button>
-
-<div class="privateLocked">
-
-<div class="bigLock">🔒</div>
-
-<h3>PRIVATE</h3>
-
-<p>This folder is restricted.</p>
-
-<strong>NO PUBLIC ACCESS</strong>
-
-<span>
-Private project materials are not opened, displayed,
-or exposed through the public Briefcase.
-</span>
-
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-
-<!-- INFORMATION SCREEN -->
-
-<div id="infoScreen" class="fullScreen">
-
-<div class="topBar">
-
-<button onclick="closeInfo()">← Back</button>
-
-<div id="infoTitle" class="topBarTitle">
-AAMush
-</div>
-
-</div>
-
-<div class="infoContent">
-
-<div id="infoText" class="infoBox"></div>
 
 </div>
 
 </div>
 
 
-<!-- MANUAL SCREEN -->
+<!-- INFORMATION WINDOW -->
 
-<div id="manualScreen">
+<div id="info" class="info">
 
-<div class="topBar">
+<button class="back" onclick="closeInfo()">← Back</button>
 
-<button onclick="closeManual()">
-← Briefcase
-</button>
+<div class="infoBox">
 
-<div class="topBarTitle">
-AAMush Mesh-01 Feeder Device — Master Manual
-</div>
+<h2 id="infoTitle"></h2>
+
+<p id="infoText"></p>
 
 </div>
-
-<iframe
-id="manualFrame"
-title="AAMush Mesh-01 Feeder Device Master Manual">
-</iframe>
 
 </div>
 
 
 <script>
 
-const MANUAL_FILE =
-"AAMush-Mesh-01-Feeder-Manual.pdf";
+const logo=document.getElementById("floatingLogo");
 
-const floatingLogo =
-document.getElementById("floatingLogo");
-
-const briefcaseScreen =
-document.getElementById("briefcaseScreen");
-
-const infoScreen =
-document.getElementById("infoScreen");
-
-const manualScreen =
-document.getElementById("manualScreen");
-
-const manualFrame =
-document.getElementById("manualFrame");
-
-
-/* OPEN BRIEFCASE */
-
-floatingLogo.addEventListener("click",function(){
-
- briefcaseScreen.classList.add("active");
-
+logo.onclick=function(){
+ document.getElementById("briefcase").classList.add("active");
  document.body.style.overflow="hidden";
-
- showBriefcaseLevel1();
-
-});
-
-
-/* CLOSE BRIEFCASE */
-
-document
-.getElementById("closeBriefcase")
-.addEventListener("click",closeBriefcase);
-
+};
 
 function closeBriefcase(){
-
- briefcaseScreen.classList.remove("active");
-
+ document.getElementById("briefcase").classList.remove("active");
  document.body.style.overflow="";
-
 }
 
-
-/* LEVEL 1 */
-
-function showBriefcaseLevel1(){
-
- document.getElementById("briefcaseLevel1").style.display="grid";
-
- document.getElementById("publicLevel").style.display="none";
-
- document.getElementById("privateLevel").style.display="none";
-
+function openPublic(){
+ document.getElementById("folders").style.display="none";
+ document.getElementById("publicItems").style.display="block";
 }
 
-
-/* OPEN PUBLIC / PRIVATE LEVEL */
-
-function openBriefcaseLevel(level){
-
- document.getElementById("briefcaseLevel1").style.display="none";
-
- document.getElementById("publicLevel").style.display =
- level==="public" ? "flex" : "none";
-
- document.getElementById("privateLevel").style.display =
- level==="private" ? "flex" : "none";
-
+function backFolders(){
+ document.getElementById("publicItems").style.display="none";
+ document.getElementById("folders").style.display="grid";
 }
 
-
-/* PRIVATE */
-
-function showPrivateLocked(){
-
- openBriefcaseLevel("private");
-
-}
-
-
-/* INFORMATION */
-
-/* DEVELOPER PROFILE */
-
-function openDeveloperProfile(){
-
-document.getElementById("infoTitle").textContent="Developer Profile";
-
-document.getElementById("infoText").innerHTML=`
-
-<div style="text-align:center;margin-bottom:18px;">
-
-<img src="Screenshot_2026-08-14-17-27-24-608~2.jpeg"
-style="width:180px;height:220px;object-fit:cover;border-radius:14px;border:3px solid #ffffff;box-shadow:0 6px 20px rgba(0,0,0,.45);">
-
-</div>
-
-<h2 style="text-align:center;margin-bottom:8px;">
-Dr. James K. Mushi
-</h2>
-
-<p style="text-align:center;font-size:16px;">
-<strong>Developer • Scholar • Educator • Education-Access Advocate</strong>
-</p>
-
-<p>
-Dr. James K. Mushi is an interdisciplinary scholar, educator, technology developer and education-access advocate whose work brings together education, technology, linguistics, history, theology and community development.
-</p>
-
-<p>
-He is the developer and visionary behind the <strong>AAMush Mesh-01 Feeder</strong> project, combining practical innovation with a broader commitment to knowledge, accessibility and human development.
-</p>
-
-<h3>Academic & Scholarly Profile</h3>
-
-<p>
-Dr. Mushi holds a <strong>PhD in Theology Studies</strong> and a <strong>Master's degree in Computer Science</strong>. He is also pursuing a <strong>PhD in Linguistics & History</strong>, reflecting his commitment to interdisciplinary scholarship and the relationship between language, history, knowledge and society.
-</p>
-
-<h3>Education Leadership</h3>
-
-<p>
-He serves as <strong>Director of the Education Access Advisory Programme</strong>, an initiative dedicated to expanding educational opportunity, guidance and access to learning.
-</p>
-
-<p>
-He is also the <strong>Founder of Abigail Eduacces Shule Foundation</strong>, an education-focused foundation established around the conviction that education should be accessible, empowering and capable of transforming individual lives and communities.
-</p>
-
-<h3>Vision</h3>
-
-<p>
-His work is guided by a simple but profound principle: <strong>knowledge should not merely be possessed; it should be used to create opportunity, solve problems and improve human life.</strong>
-</p>
-
-<p>
-Through scholarship, education advocacy and technological innovation, Dr. Mushi seeks to build bridges between knowledge and practical solutions — particularly where education, technology and social advancement intersect.
-</p>
-
-<p style="margin-top:18px;font-style:italic;text-align:center;">
-“Education opens the door to possibility; knowledge gives people the power to walk through it.”
-</p>
-
-`;
-
-infoScreen.classList.add("active");
-
-document.body.style.overflow="hidden";
-
- }function openInfo(title,text){
-
+function info(title,text){
  document.getElementById("infoTitle").textContent=title;
-
- document.getElementById("infoText").innerHTML=
- "<h2>"+title+"</h2><p>"+text+"</p>";
-
- infoScreen.classList.add("active");
-
+ document.getElementById("infoText").textContent=text;
+ document.getElementById("info").style.display="block";
 }
-
 
 function closeInfo(){
-
- infoScreen.classList.remove("active");
-
+ document.getElementById("info").style.display="none";
 }
 
-
-/* MANUAL */
-
-function openManual(){
-
- manualFrame.src=MANUAL_FILE;
-
- manualScreen.classList.add("active");
-
- document.body.style.overflow="hidden";
-
-}
-
-
-function closeManual(){
-
- manualScreen.classList.remove("active");
-
- manualFrame.src="";
-
- document.body.style.overflow="";
-
-}
-
-
-/* ESCAPE KEY */
-
-document.addEventListener("keydown",function(event){
-
- if(event.key==="Escape"){
-
-  closeManual();
+document.addEventListener("keydown",function(e){
+ if(e.key==="Escape"){
   closeInfo();
   closeBriefcase();
-
  }
-
 });
 
 </script>
